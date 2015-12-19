@@ -1,0 +1,42 @@
+extends layout
+
+block content
+  h1(style="position: absolute; top: 4%;") 座位表
+  form(action="/home/password",method="post")
+    input#passwordchange(type="submit",value="改密码")
+  div(class="seats")
+    - var i = 0
+    each name in namelist
+      if (i>=0 && i<=7)
+        div(tag = i,class="left")
+          if nametag==name
+            a(style="color: blue")=name
+          else
+            a(href="/home/change/"+name)=name
+      else if (i>=8 && i<=16)
+        div(tag = i,class = "back")
+          if nametag==name
+            a(style="color: blue")=name
+          else
+            a(href="/home/change/"+name)=name
+      else if (i>=17 && i<=24)
+        div(tag = i,class = "right")
+          if nametag==name
+            a(style="color: blue")=name
+          else
+            a(href="/home/change/"+name)=name
+      else if (i>=25 && i<=31)
+        div(tag = i,class = "middle")
+          if nametag==name
+            a(style="color: blue")=name
+          else
+            a(href="/home/change/"+name)=name
+      else if (i>=32 && i<=38)
+        div(tag = i,class = "front")
+          if nametag==name
+            a(style="color: blue")=name
+          else
+            a(href="/home/change/"+name)=name
+      - i = i + 1
+    form(action="/home/logout",method="post")
+      button() logout

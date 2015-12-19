@@ -1,0 +1,190 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+#passwordchange {
+  position: absolute;
+  right: 10%;
+  top:10%;
+  width: 60px;
+  font-size:20px;
+}
+
+p.warning-text {
+  font-size: 11px;
+  color: red;
+}
+
+div.seats {
+  padding:20px;
+}
+
+div.seats div {
+  text-align: center;
+  height: 100px;
+}
+
+div.seats div.left {
+  position:absolute;
+  left: 7%;
+}
+
+div.seats div.left[tag="0"] {
+  top:100%;
+}
+div.seats div.left[tag="1"] {
+  top:90%;
+}
+div.seats div.left[tag="2"] {
+  top:80%;
+}
+div.seats div.left[tag="3"] {
+  top:70%;
+}
+div.seats div.left[tag="4"] {
+  top:60%;
+}
+div.seats div.left[tag="5"] {
+  top:50%;
+}
+div.seats div.left[tag="6"] {
+  top:40%;
+}
+div.seats div.left[tag="7"] {
+  top:30%;
+}
+
+div.seats div.back {
+  position: absolute;
+  top: 20%;
+}
+
+
+
+div.seats div[tag="8"] {
+  left:8%;
+}
+div.seats div[tag="9"] {
+  left:18%;
+}
+div.seats div[tag="10"] {
+  left:28%;
+}
+div.seats div[tag="11"] {
+  left:38%;
+}
+div.seats div[tag="12"] {
+  left:48%;
+}
+div.seats div[tag="13"] {
+  left:58%;
+}
+div.seats div[tag="14"] {
+  left:68%;
+}
+div.seats div[tag="15"] {
+  left:78%;
+}
+div.seats div[tag="16"] {
+  left:88%;
+}
+
+
+div.seats div.right {
+  position: absolute;
+  right: 7%;
+}
+
+div.seats div[tag="17"] {
+  top:30%;
+}
+div.seats div[tag="18"] {
+  top:40%;
+}
+div.seats div[tag="19"] {
+  top:50%;
+}
+div.seats div[tag="20"] {
+  top:60%;
+}
+div.seats div[tag="21"] {
+  top:70%;
+}
+div.seats div[tag="22"] {
+  top:80%;
+}
+div.seats div[tag="23"] {
+  top:90%;
+}
+div.seats div[tag="24"] {
+  top:100%;
+}
+
+
+
+div.seats div.middle {
+  position: absolute;
+  top: 35%;
+}
+
+div.seats div[tag="25"] {
+  left:78%;
+}
+div.seats div[tag="26"] {
+  left:68%;
+}
+div.seats div[tag="27"] {
+  left:58%;
+}
+div.seats div[tag="28"] {
+  left:48%;
+}
+div.seats div[tag="29"] {
+  left:38%;
+}
+div.seats div[tag="30"] {
+  left:28%;
+}
+div.seats div[tag="31"] {
+  left:18%;
+}
+
+
+div.seats div.front {
+  position: absolute;
+  top: 50%;
+}
+
+div.seats div[tag="32"] {
+  left: 18%;
+}
+div.seats div[tag="33"] {
+  left: 28%;
+}
+div.seats div[tag="34"] {
+  left: 38%;
+}
+div.seats div[tag="35"] {
+  left: 48%;
+}
+div.seats div[tag="36"] {
+  left: 58%;
+}
+div.seats div[tag="37"] {
+  left: 68%;
+}
+div.seats div[tag="38"] {
+  left: 78%;
+}
+
+
+div.seats form button {
+  position: absolute;
+  left: 48%;
+  top: 90%;
+}
