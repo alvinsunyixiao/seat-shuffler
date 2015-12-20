@@ -7,6 +7,7 @@ a {
   padding: 5px;
   color: #0E91A9;
   text-decoration: none;
+  font-size: 21px;
 }
 
 #passwordchange {
@@ -33,7 +34,7 @@ div.seats div {
 
 div.seats div.left {
   position:absolute;
-  left: 7%;
+  left: 6%;
 }
 
 div.seats div.left[name="0"] {
@@ -99,7 +100,7 @@ div.seats div[name="16"] {
 
 div.seats div.right {
   position: absolute;
-  right: 7%;
+  right: 4%;
 }
 
 div.seats div[name="17"] {

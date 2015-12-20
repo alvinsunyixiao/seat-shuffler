@@ -46,14 +46,29 @@ router.get('/',function(req,res){
             }
           }
         }
-        res.render('home',{
-          highlights: highlights,
-          student: student,
-          namelist: namelist,
-          seatorder: seatod.order,
-          title: "座位",
-          tag: req.session.studentnumber,
-          nametag: req.session.studentname
+        seatrequest.find({
+          pointername: req.session.studentname
+        },function(err,seatrs){
+          for (var i=0;i<39;i++) {
+            for (j in seatrs) {
+              if (seatrs[j].name==namelist[i]) {
+                highlights[i] = "border:3px dotted;border-color: red";
+                break;
+              }
+              else {
+                continue;
+              }
+            }
+          }
+          res.render('home',{
+            highlights: highlights,
+            student: student,
+            namelist: namelist,
+            seatorder: seatod.order,
+            title: "座位",
+            tag: req.session.studentnumber,
+            nametag: req.session.studentname
+          });
         });
       });
     });
