@@ -8,35 +8,36 @@ block content
     - var i = 0
     each name in namelist
       if (i>=0 && i<=7)
-        div(tag = i,class="left")
+        div(name = i,class="left")
           if nametag==name
-            a(style="color: blue")=name
+            a(style="color: #7C5ABB")=name
           else
-            a(href="/home/change/"+name)=name
+            a(href="/home/change/"+name,style=highlights[i])=name
       else if (i>=8 && i<=16)
-        div(tag = i,class = "back")
+        div(name = i,class = "back")
           if nametag==name
-            a(style="color: blue")=name
+            a(style="color: #7C5ABB")=name
           else
-            a(href="/home/change/"+name)=name
+            a(href="/home/change/"+name,style=highlights[i])=name
       else if (i>=17 && i<=24)
-        div(tag = i,class = "right")
+        div(name = i,class = "right")
           if nametag==name
-            a(style="color: blue")=name
+            a(style="color: #7C5ABB")=name
           else
-            a(href="/home/change/"+name)=name
+            a(href="/home/change/"+name,style=highlights[i])=name
       else if (i>=25 && i<=31)
-        div(tag = i,class = "middle")
+        div(name = i,class = "middle")
           if nametag==name
-            a(style="color: blue")=name
+            a(style="color: #7C5ABB")=name
           else
-            a(href="/home/change/"+name)=name
+            a(href="/home/change/"+name,style=highlights[i])=name
       else if (i>=32 && i<=38)
-        div(tag = i,class = "front")
+        div(name = i,class = "front")
           if nametag==name
-            a(style="color: blue")=name
+            a(style="color: #7C5ABB")=name
           else
-            a(href="/home/change/"+name)=name
+            a(href="/home/change/"+name,style=highlights[i])=name
       - i = i + 1
+    script(src="/javascripts/highlight.js")
     form(action="/home/logout",method="post")
       button() logout

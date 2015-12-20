@@ -31,7 +31,7 @@ app.use(session({
   resave: false,
   saveUninitialized: false,
   secret: 'YoGotWhaImSayin',
-  cookie: { maxAge: 300000 },
+  cookie: { maxAge: 3000000 },
   store: new MongoStore({
     url: "mongodb://localhost/sessionStorage"
   })
