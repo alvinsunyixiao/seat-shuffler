@@ -143,9 +143,13 @@ router.get('/change/:namestr',function(req,res){
                 new seatorder({
                   order: od
                 }).save(function(err, stod){
-                  res.redirect('/home');
+                  seatrequest.find({name: namestring},function(err,seatrqs){
+                    for (i in seatrqs) {
+                      seatrqs[i].remove();
+                    }
+                    res.redirect('/home');
+                  });
                 });
-
               }
             }
             else {
