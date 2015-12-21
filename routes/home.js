@@ -18,13 +18,16 @@ router.get('/',function(req,res){
     var namelist = new Array(39);
     var student = new Array(39);
     var highlights = new Array(39);
+    var names = new Array(39);
     Student.find(function(err, stds){
       for (var i=0;i<39;i++) {
         for (j in stds) {
           if (od[i]==stds[j].number) {
             namelist[i]=stds[j].name;
             student[i]=stds[j];
-            break;
+          }
+          else if (stds[j].number==i+1) {
+            names[i] = stds[j].name;
           }
         }
       }
@@ -61,6 +64,7 @@ router.get('/',function(req,res){
             }
           }
           res.render('home',{
+            names:names,
             highlights: highlights,
             student: student,
             namelist: namelist,
@@ -68,6 +72,8 @@ router.get('/',function(req,res){
             title: "座位",
             tag: req.session.studentnumber,
             nametag: req.session.studentname
+          },function(err, html){
+            res.send(html);
           });
         });
       });

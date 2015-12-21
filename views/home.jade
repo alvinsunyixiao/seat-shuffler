@@ -38,6 +38,50 @@ block content
           else
             a(href="/home/change/"+name,style=highlights[i])=name
       - i = i + 1
-    script(src="/javascripts/highlight.js")
+    script.
+      function GetRandomNum(Min,Max) {   
+        var Range = Max - Min;   
+        var Rand = Math.random();   
+        return(Min + Math.round(Rand * Range));   
+      } 
+      var box = "#{highlights}"
+      var box2 = "#{names}"
+      var names = box2.split(",");
+      var highlights = box.split(",");
+      var order = [#{seatorder}];
+      var now = new Date();
+      var day = now.getDay();
+      var hour = now.getHours();
+      var minute = now.getMinutes();
+      var sec = now.getSeconds();
+      var myVar;
+      var count;
+      var js = 0;
+      function shuffleNew() {
+        var arr = new Array(39);
+        for (var i=0;i<39;i++) {
+          arr[i] = i;
+        }
+        for (var i=0;i<2000;i++) {
+          var sa = GetRandomNum(0,38);
+          var sb = GetRandomNum(0,38);
+          var temp = arr[sa];
+          arr[sa] = arr[sb];
+          arr[sb] = temp;
+        }
+        for (var i=0;i<39;i++) {
+          document.getElementsByName(i)[0].innerHTML="<a>"+names[arr[i]]+"</a>";
+        }
+        js=js+1;
+        if (js>=count) {
+          clearInterval(myVar);
+        }
+      }
+      if (day==1 && hour==17 && minute>=30) {
+        var mindif = 60-minute, secdif = 60-sec;
+        secdif = secdif + mindif*60 - 60;
+        count = secdif*10;
+        myVar=setInterval(function(){shuffleNew()},100);
+      }
     form(action="/home/logout",method="post")
       button() logout
