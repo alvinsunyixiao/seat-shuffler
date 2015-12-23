@@ -15,11 +15,11 @@ router.get('/', function(req, res) {
 	var hour = dt.getHours();
 	var minute = dt.getMinutes();
 	minute = minute + hour*60;
-	if (day==2 || day==3 || day==4 || day==5 || (day==6 && minute<478)) {
+	if (day==2 || day==3 || day==5 || (day==6 && minute<478)) {
 		res.redirect('/normalview');
 		return;
 	}
-	res.render('index',{noUser: "visibility: hidden"});
+	res.render('index',{noUser: "display: none"});
 });
 router.post('/login',function(req,res){
 
@@ -28,12 +28,12 @@ router.post('/login',function(req,res){
 	Student.findOne({name: stdname},function(err, student){
 		if (!student) {
 			res.render('index',{
-				noUser: "visibility: visible"
+				noUser: "display: block"
 			});
 			return;
 		}
 		else if (stdpass != student.password) {
-			res.render('index',{noUser: "visibility: visible"});
+			res.render('index',{noUser: "display: block"});
 			return;
 		}
 		else if (stdpass == student.password) {

@@ -1,5 +1,4 @@
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
@@ -8,6 +7,57 @@ a {
   color: #0E91A9;
   text-decoration: none;
   font-size: 21px;
+}
+
+div.myheader {
+  padding-top: 1%;
+  padding-bottom: 1.9%;
+  background-color: rgba(44, 132, 115, 0.11);
+}
+
+form.loginlist {
+  padding-top: 30px;
+  padding-bottom: 80px;
+  background-color: rgba(38, 64, 158, 0.06);
+  margin-left: -15px;
+  margin-right: -15px;
+}
+
+button.loginbtn {
+  margin-top: 20px;
+  background-color: rgba(60, 115, 136, 0.47);
+  color: rgb(242, 244, 249);
+  border-radius: 20px;
+  font-size: 24px;
+  border-color: rgba(78, 132, 156, 0.34);
+  border-width: 4px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+div.form-group {
+  width: 100%;
+}
+
+button.close {
+  right: 0px;
+}
+
+button.loginbtn:hover {
+  margin-top: 20px;
+  background-color: rgba(47, 184, 236, 0.47);
+  color: rgb(2, 33, 47);
+  border-radius: 20px;
+  font-size: 24px;
+  border-color: rgba(78, 132, 156, 0.34);
+  border-width: 4px;
+}
+
+div.myalert {
+  text-align: center;
+  margin-top: -31px;
+  display: none;
+  margin-left: 0px !important;
+  margin-right: 0px !important;
 }
 
 #passwordchange {
