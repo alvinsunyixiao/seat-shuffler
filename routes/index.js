@@ -15,7 +15,7 @@ router.get('/', function(req, res) {
 	var hour = dt.getHours();
 	var minute = dt.getMinutes();
 	minute = minute + hour*60;
-	if (day==4 || day==5 || (day==6 && minute<478)) {
+	if (day==2 || day==3 || day==4 || day==5 || (day==6 && minute<478)) {
 		res.redirect('/normalview');
 		return;
 	}
