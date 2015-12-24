@@ -6,7 +6,11 @@ a {
   padding: 5px;
   color: #0E91A9;
   text-decoration: none;
-  font-size: 21px;
+  font-size: 20px;
+}
+
+a:hover {
+  text-decoration: none;
 }
 
 div.myheader {
