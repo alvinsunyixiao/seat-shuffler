@@ -17,6 +17,19 @@ div.myheader {
   padding-top: 1%;
   padding-bottom: 1.9%;
   background-color: rgba(44, 132, 115, 0.11);
+  animation-name: headerAnm;
+  animation-duration: 3s;
+  animation-timing-function: ease-in-out;
+
+}
+
+@keyframes headerAnm {
+  0% {
+    font-size: 10px;
+  }
+  100% {
+    font-size: 30px;
+  }
 }
 
 form.loginlist {
@@ -45,6 +58,8 @@ div.form-group {
 button.close {
   right: 0px;
 }
+
+
 
 button.loginbtn:hover {
   margin-top: 20px;
