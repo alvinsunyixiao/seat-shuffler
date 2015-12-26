@@ -2,11 +2,40 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var router = express.Router();
 var mongoose = require( 'mongoose' );
+var schedule = require('node-schedule');
 var Student     = mongoose.model( 'Student' );
 var seatorder = mongoose.model('seatorder');
 var seatrequest = mongoose.model('seatrequest');
 
+var rule = new schedule.RecurrenceRule();
+rule.dayOfWeek = 6;
+rule.minute = 0;
+rule.hour = 8;
 
+function GetRandomNum(Min,Max) {
+  var Range = Max - Min;
+  var Rand = Math.random();
+  return(Min + Math.round(Rand * Range));
+}
+
+var myEvent = schedule.scheduleJob(rule,function(){
+  seatorder.findOne(function(err, seatod){
+    var od = seatod.order;
+    var myArr = new Array(39);
+    for (var i=0;i<39;i++) {
+      myArr[i] = i+1;
+    }
+    for (var i=0;i<2000;i++) {
+      var as = GetRandomNum(0,38);
+      var bs = GetRandomNum(0,38);
+      var temp = myArr[as];
+      myArr[as] = myArr[bs];
+      myArr[bs] = temp;
+    }
+    seatod.remove();
+    new seatorder({order: myArr}).save();
+  });
+});
 
 router.get('/',function(req,res){
   seatorder.findOne(function(err, seatod){
@@ -14,6 +43,15 @@ router.get('/',function(req,res){
       res.redirect('../');
       return;
     }
+    var dt = new Date();
+  	var day = dt.getDay();
+  	var hour = dt.getHours();
+  	var minute = dt.getMinutes();
+  	minute = minute + hour*60;
+    if (day==2 || day==3 || day==4 || day==5 || (day==6 && minute<478)) {
+  		res.redirect('/normalview');
+  		return;
+  	}
     var od = seatod.order;
     var namelist = new Array(39);
     var student = new Array(39);
@@ -26,7 +64,7 @@ router.get('/',function(req,res){
             namelist[i]=stds[j].name;
             student[i]=stds[j];
           }
-          else if (stds[j].number==i+1) {
+          if (stds[j].number==i+1) {
             names[i] = stds[j].name;
           }
         }
@@ -103,6 +141,15 @@ router.get('/change/:namestr',function(req,res){
     res.redirect('../');
     return;
   }
+  var dt = new Date();
+  var day = dt.getDay();
+  var hour = dt.getHours();
+  var minute = dt.getMinutes();
+  minute = minute + hour*60;
+  if (day==2 || day==3 || day==4 || day==5 || (day==6 && minute<478)) {
+		res.redirect('/normalview');
+		return;
+	}
   seatorder.findOne(function(err,seatod){
     var namestring = req.params.namestr;
     seatrequest.findOne({

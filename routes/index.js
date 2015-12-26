@@ -10,6 +10,15 @@ router.get('/', function(req, res) {
 		res.redirect('/home');
 		return;
 	}
+	var dt = new Date();
+	var day = dt.getDay();
+	var hour = dt.getHours();
+	var minute = dt.getMinutes();
+	minute = minute + hour*60;
+	if (day==2 || day==3 || day==4 || day==5 || (day==6 && minute<478)) {
+		res.redirect('/normalview');
+		return;
+	}
 	res.render('index',{noUser: "visibility: hidden"});
 });
 router.post('/login',function(req,res){

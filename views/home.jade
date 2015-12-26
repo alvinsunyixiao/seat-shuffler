@@ -72,16 +72,20 @@ block content
         for (var i=0;i<39;i++) {
           document.getElementsByName(i)[0].innerHTML="<a>"+names[arr[i]]+"</a>";
         }
-        js=js+1;
-        if (js>=count) {
+        var dateNow = new Date();
+        var hourNow = dateNow.getHours();
+        var secNow = dateNow.getSeconds();
+        if (hourNow==8 && secNow>=2) {
           clearInterval(myVar);
+          window.location = "home";
         }
       }
-      if (day==1 && hour==17 && minute>=30) {
+      if (day==6 && hour==7 && minute>=58) {
         var mindif = 60-minute, secdif = 60-sec;
         secdif = secdif + mindif*60 - 60;
         count = secdif*10;
         myVar=setInterval(function(){shuffleNew()},100);
+        //shuffleNew();
       }
     form(action="/home/logout",method="post")
       button() logout
