@@ -1,91 +1,93 @@
 extends layout
 
 block content
-  h1(style="position: absolute; top: 4%;") 座位表
-  form(action="/home/password",method="post")
-    input#passwordchange(type="submit",value="改密码")
-  div(class="seats")
-    - var i = 0
-    each name in namelist
-      if (i>=0 && i<=7)
-        div(name = i,class="left")
-          if nametag==name
-            a(style="color: #7C5ABB")=name
-          else
-            a(href="/home/change/"+name,style=highlights[i])=name
-      else if (i>=8 && i<=16)
-        div(name = i,class = "back")
-          if nametag==name
-            a(style="color: #7C5ABB")=name
-          else
-            a(href="/home/change/"+name,style=highlights[i])=name
-      else if (i>=17 && i<=24)
-        div(name = i,class = "right")
-          if nametag==name
-            a(style="color: #7C5ABB")=name
-          else
-            a(href="/home/change/"+name,style=highlights[i])=name
-      else if (i>=25 && i<=31)
-        div(name = i,class = "middle")
-          if nametag==name
-            a(style="color: #7C5ABB")=name
-          else
-            a(href="/home/change/"+name,style=highlights[i])=name
-      else if (i>=32 && i<=38)
-        div(name = i,class = "front")
-          if nametag==name
-            a(style="color: #7C5ABB")=name
-          else
-            a(href="/home/change/"+name,style=highlights[i])=name
-      - i = i + 1
-    script.
-      function GetRandomNum(Min,Max) {   
-        var Range = Max - Min;   
-        var Rand = Math.random();   
-        return(Min + Math.round(Rand * Range));   
-      } 
-      var box = "#{highlights}"
-      var box2 = "#{names}"
-      var names = box2.split(",");
-      var highlights = box.split(",");
-      var order = [#{seatorder}];
-      var now = new Date();
-      var day = now.getDay();
-      var hour = now.getHours();
-      var minute = now.getMinutes();
-      var sec = now.getSeconds();
-      var myVar;
-      var count;
-      var js = 0;
-      function shuffleNew() {
-        var arr = new Array(39);
-        for (var i=0;i<39;i++) {
-          arr[i] = i;
+  div(class="container")
+    div(style="text-align:center")
+      h1 座位表
+    form(action="/home/password",method="post")
+      input#passwordchange(type="submit",value="改密码")
+    div(class="seats")
+      - var i = 0
+      each name in namelist
+        if (i>=0 && i<=7)
+          div(name = i,class="left")
+            if nametag==name
+              a(style="color: #7C5ABB")=name
+            else
+              a(href="/home/change/"+name,style=highlights[i])=name
+        else if (i>=8 && i<=16)
+          div(name = i,class = "back")
+            if nametag==name
+              a(style="color: #7C5ABB")=name
+            else
+              a(href="/home/change/"+name,style=highlights[i])=name
+        else if (i>=17 && i<=24)
+          div(name = i,class = "right")
+            if nametag==name
+              a(style="color: #7C5ABB")=name
+            else
+              a(href="/home/change/"+name,style=highlights[i])=name
+        else if (i>=25 && i<=31)
+          div(name = i,class = "middle")
+            if nametag==name
+              a(style="color: #7C5ABB")=name
+            else
+              a(href="/home/change/"+name,style=highlights[i])=name
+        else if (i>=32 && i<=38)
+          div(name = i,class = "front")
+            if nametag==name
+              a(style="color: #7C5ABB")=name
+            else
+              a(href="/home/change/"+name,style=highlights[i])=name
+        - i = i + 1
+      script.
+        function GetRandomNum(Min,Max) {   
+          var Range = Max - Min;   
+          var Rand = Math.random();   
+          return(Min + Math.round(Rand * Range));   
+        } 
+        var box = "#{highlights}"
+        var box2 = "#{names}"
+        var names = box2.split(",");
+        var highlights = box.split(",");
+        var order = [#{seatorder}];
+        var now = new Date();
+        var day = now.getDay();
+        var hour = now.getHours();
+        var minute = now.getMinutes();
+        var sec = now.getSeconds();
+        var myVar;
+        var count;
+        var js = 0;
+        function shuffleNew() {
+          var arr = new Array(39);
+          for (var i=0;i<39;i++) {
+            arr[i] = i;
+          }
+          for (var i=0;i<2000;i++) {
+            var sa = GetRandomNum(0,38);
+            var sb = GetRandomNum(0,38);
+            var temp = arr[sa];
+            arr[sa] = arr[sb];
+            arr[sb] = temp;
+          }
+          for (var i=0;i<39;i++) {
+            document.getElementsByName(i)[0].innerHTML="<a>"+names[arr[i]]+"</a>";
+          }
+          var dateNow = new Date();
+          var hourNow = dateNow.getHours();
+          var secNow = dateNow.getSeconds();
+          if (hourNow==8 && secNow>=2) {
+            clearInterval(myVar);
+            window.location = "home";
+          }
         }
-        for (var i=0;i<2000;i++) {
-          var sa = GetRandomNum(0,38);
-          var sb = GetRandomNum(0,38);
-          var temp = arr[sa];
-          arr[sa] = arr[sb];
-          arr[sb] = temp;
+        if (day==6 && hour==7 && minute>=58) {
+          var mindif = 60-minute, secdif = 60-sec;
+          secdif = secdif + mindif*60 - 60;
+          count = secdif*10;
+          myVar=setInterval(function(){shuffleNew()},100);
+          //shuffleNew();
         }
-        for (var i=0;i<39;i++) {
-          document.getElementsByName(i)[0].innerHTML="<a>"+names[arr[i]]+"</a>";
-        }
-        var dateNow = new Date();
-        var hourNow = dateNow.getHours();
-        var secNow = dateNow.getSeconds();
-        if (hourNow==8 && secNow>=2) {
-          clearInterval(myVar);
-          window.location = "home";
-        }
-      }
-      if (day==6 && hour==7 && minute>=58) {
-        var mindif = 60-minute, secdif = 60-sec;
-        secdif = secdif + mindif*60 - 60;
-        count = secdif*10;
-        myVar=setInterval(function(){shuffleNew()},100);
-        //shuffleNew();
-      }
-    form(action="/home/logout",method="post")
-      button() logout
+      form(action="/home/logout",method="post")
+        button() logout
